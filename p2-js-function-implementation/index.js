@@ -4,7 +4,7 @@
  */
 
 function helloWorld(){
-    throw new Error("unimplemented");
+    return "hello world";
 }
 
 /*
@@ -16,7 +16,8 @@ function helloWorld(){
  */
 
 function squareToString(num){
-    throw new Error("unimplemented");
+    let x = num*num;
+    return ''+x+'';
 }
 
 /*
@@ -27,7 +28,7 @@ function squareToString(num){
  */
 
 function reverseString(str){
-    throw new Error("unimplemented");
+    return str.split('').reverse().join('');
 }
 
  /*
@@ -46,8 +47,23 @@ function reverseString(str){
   */
 
  function avgLenOfVals(dict){
-     throw new Error("unimplemented");
- }
+    let cnt = 0; 
+    let counter = 0;
+
+    for (var x in dict) {
+        counter++;
+        if (typeof dict[x] === 'string') {
+            cnt = cnt + dict[x].length;
+        } else { 
+            cnt = cnt + dict[x].toString().length; 
+       }
+    
+    }
+    if (cnt === 0) {
+        return 0;
+    }
+    return cnt/counter;
+}
 
 /*
  * Function 5: stringToArr -> Given a string that has comma + whitespace
@@ -62,7 +78,8 @@ function reverseString(str){
  */
 
 function applyFunToArray(str, fun){
-    throw new Error("unimplemented");
+    let newStr = str.match(/\w+/g);
+    return fun(newStr);
 }
 
 module.exports = {
