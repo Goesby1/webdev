@@ -76,3 +76,65 @@ var abvMap = {
  * will be different. Make sure you Google! We urge you to post in Piazza if
  * you are stuck.
  */
+var countDown = 20;
+var arraySize = states.length;
+
+
+document.getElementById("timer").innerHTML = countDown;
+
+
+$("#inp").on("keyup", function() { 
+    var checker = $("#inp").val();
+    if (states.length > 0) {
+        for (var y of states) {
+            if (checker.toUpperCase() == y.toUpperCase()) {
+                    $("#inp").val('');
+                    $("#container").append("<li class='state'>" + checker.toUpperCase()+ "</li>");
+                    var pop = states.indexOf(y);
+                    states.splice(pop,1);
+                    break;
+            }
+        }
+    }
+})
+
+$(document).on("mouseover","li.state", function () {
+    var value = $(this).text();
+    var sts = Object.keys(abvMap).find(key => key.toUpperCase() === value);
+    var stateID = abvMap[sts];
+    $.get("https://api.census.gov/data/2013/language?get=EST&for=state:"+stateID+"&LAN=625", function(data) {  
+        const frm = new Intl.NumberFormat();
+        var est = parseInt(data[1][0]);
+        document.getElementById("value").innerHTML = "State Population: " + frm.format(est);
+    })  
+})
+ 
+
+
+
+$("#start").on("click", function (){
+    $("#inp").prop("disabled", false);
+    var time = setInterval(function() {
+        if (states.length > 0) {
+            countDown = countDown - 1;
+            document.getElementById("timer").innerHTML = countDown;
+
+            if (countDown == 0) {
+                clearInterval(time);
+                var scr = arraySize - states.length;
+                document.getElementById("score").innerHTML =  scr +"/"+ arraySize;
+                document.getElementById("timer").innerHTML = "OVER";
+                $("#inp").prop("disabled", true);
+                document.getElementById("list").innerHTML = "REST of STATES";
+                for(var st of states){
+                   $("#restList").append("<li class='state'>" + st.toUpperCase()+ "</li>");
+                }
+
+            }
+        } else if (states.length == 0) {
+
+            $("#inp").prop("disabled", true);
+            document.getElementById("score").innerHTML = "WINNER!!!!!";
+        }
+    },1000);
+})
