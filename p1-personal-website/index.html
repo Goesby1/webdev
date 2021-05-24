@@ -1,3 +1,73 @@
 <!-- We have purposely given you an empty file. We want you to get some practice with creating all the tags from the ground up.
  -->
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Personal Website</title>
+    <link  href="style.css" rel="stylesheet"/>
+    <style>
+        .classes {
+          font-style:italic;
+          font-weight: bold;
+          
+        }
+        .center{
+            display:block;
+            margin-left: auto;
+            margin-right: auto;
+        }  
+        #size {
+            font-size:xx-small;
+        }
+
+        #list {
+           table-layout:fixed;
+           margin-left: auto;
+           margin-right: auto;
+        }
+        @media screen and(max-width: 600px) {
+            .body {
+                background: red;
+            }
+            .hl {
+                font-size: medium;
+
+            }
+        }
+    </style>
+</head>
+<body>
+    <dev>
+        <h1 >
+            <a href="https://www.youtube.com/"> YOSEFE ESHETE </a>
+        </h1>
+        <dev>
+            <p style="text-align: center;">Welcome to my first website, stay tuned for improvement.</p>
+        </dev>
+        <dev>
+            <a href="secret.html">
+                <img class="center" src="pic.jpg" style="transform: rotate(90deg);"width="500" height="500" />
+            </a>
+        </dev>
+    </dev>
+    <dev >
+        <table id="list">
+            <caption>List of classes and date</caption>
+                <tr class="classes">
+                    <td>CMSC417</td>
+                    <td>CMSC414</td>
+                    <td>CMSC320</td>
+                    <td>CMSC389K</td>
+                </tr>
+                <tr id="size">
+                    <td>TUES/THUR</td>
+                    <td>TUES/THUR</td>
+                    <td>M/W</td>
+                    <td>F</td>
+                </tr>
+        </table>
+    </dev>
+</body>
+
+</html>
